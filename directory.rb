@@ -25,3 +25,6 @@ puts	"Chris Oatley"
 puts	"Spike Lindsey"
 puts	"Henry Stanley"
 
+print "Overall we have "
+print 24
+puts " students"
