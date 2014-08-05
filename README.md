@@ -10,3 +10,6 @@ How to use
 ```shell
 ruby directory.rb
 ```
+
+End of file
+-----------
