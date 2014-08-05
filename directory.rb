@@ -1,4 +1,4 @@
-=begin
+
 students = [
 				{ name: "Ruth Earle", cohort: :august},
 				{ name: "Andy Gates", cohort: :august},
@@ -26,13 +26,16 @@ students = [
 				{ name: "Albert Vallverdu", cohort: :august},
 				]
 
+$color = ["\e[0;31m","\e[0m"]
+=begin
+
 def print_header
 
 	puts	"The students of my cohort at Makers Academy"
 	puts	"==========================================="
 end
 
-def print_info(students)
+def print_student(students)
 
 	students.each do |student|
 
@@ -80,7 +83,6 @@ def input_students
 
 	#return students array
 	students
-
 end
 
 def print_header
@@ -89,11 +91,12 @@ def print_header
 	print	"=========================================== \n"
 end
 
-def print_info(students)
+def print_student(students)
 
-	students.each_with_index do |(key,value),index|
+	students.each_with_index do |(key),index|
 
-		puts "#{index} #{key[:name]} (#{key[:cohort]} cohort) "
+		puts "#{$color[0]}#{index+1}#{$color[1]} #{key[:name]} (#{key[:cohort]} cohort) "
+	
 	end
 end
 
@@ -104,12 +107,38 @@ def print_footer(students)
 
 end
 
-students = input_students
+def search_student(students)
+
+	puts "Tell me the letter?"
+
+	letter = gets.chomp
+
+	students.each do |student|
+
+		each_letter = student[:name].slice(0)
+
+		if each_letter === letter
+
+			puts student[:name]
+
+		elsif each_letter != letter
+
+			puts "#{$color[0]}Sorry, There isn't a maker with the letter \"#{letter}\" #{$color[1]}";exit(0)
+		end
+	end
+end
+
+#students = input_students
 
 print_header
-print_info(students)
+print_student(students)
 print_footer(students)
 
+puts "Do you want to search a maker by letter?"
+
+gets.chomp
+
+search_student(students)
 
 
 
