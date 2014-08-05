@@ -1,38 +1,60 @@
 students = [
-				"Ruth Earle",
-				"Andy Gates",
-				"Marc Singh",
-				"Faisal Aydarus",
-				"Ethel Ng",
-				"Kevin Daniels",
-				"Maya Driver",
-				"Leopold Kwok",
-				"James McNeil",
-				"Jerome Pratt",
-				"David Wickes",
-				"Javier Silverio",
-				"Elliot Lewis",
-				"Ben Tillett",
-				"Vincent Koch",
-				"Michelle Ballard",
-				"Nick Roberts",
-				"Tatiana Soukiassian",
-				"Mervé Silk",
-				"Lovis Schultze",
-				"Chris Oatley",
-				"Spike Lindsey",
-				"Henry Stanley",
-				"Albert Vallverdu"
+				{ name: "Ruth Earle", cohort: :august},
+				{ name: "Andy Gates", cohort: :august},
+				{ name: "Marc Singh", cohort: :august},
+				{ name: "Faisal Aydarus", cohort: :august},
+				{ name: "Ethel Ng", cohort: :august},
+				{ name: "Kevin Daniels", cohort: :august},
+				{ name: "Maya Driver", cohort: :august},
+				{ name: "Leopold Kwok", cohort: :august},
+				{ name: "James McNeil", cohort: :august},
+				{ name: "Jerome Pratt", cohort: :august},
+				{ name: "David Wickes", cohort: :august},
+				{ name: "Javier Silverio", cohort: :august},
+				{ name: "Elliot Lewis", cohort: :august},
+				{ name: "Ben Tillett", cohort: :august},
+				{ name: "Vincent Koch", cohort: :august},
+				{ name: "Michelle Ballard", cohort: :august},
+				{ name: "Nick Roberts", cohort: :august},
+				{ name: "Tatiana Soukiassian", cohort: :august},
+				{ name: "Mervé Silk", cohort: :august},
+				{ name: "Lovis Schultze", cohort: :august},
+				{ name: "Chris Oatley", cohort: :august},
+				{ name: "Spike Lindsey", cohort: :august},
+				{ name: "Henry Stanley", cohort: :august},
+				{ name: "Albert Vallverdu", cohort: :august},
 				]
+
+def print_header
+
+	puts	"The students of my cohort at Makers Academy"
+	puts	"==========================================="
+end
+
+def print_info(students)
+
+	students.each do |student|
+
+		puts "#{student[:name]} (#{student[:cohort]} cohort)"
+	end
+end
+
+def print_footer(arr_stud)
+
+	puts "Overall we have #{arr_stud.length} students"	
+
+end
 
 # Beginning program 
 
-puts	"The students of my cohort at Makers Academy"
-puts	"==========================================="
+print_header
 
-students.each do |item|
+print_info(students)
 
-	puts item
-end
+print_footer(students)
 
-puts "Overall we have #{students.length} students"
+
+
+
+
+
