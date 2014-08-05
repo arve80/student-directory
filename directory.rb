@@ -39,9 +39,9 @@ def print_info(students)
 	end
 end
 
-def print_footer(arr_stud)
+def print_footer(students)
 
-	puts "Overall we have #{arr_stud.length} students"	
+	puts "Overall we have #{students.length} students"	
 
 end
 
