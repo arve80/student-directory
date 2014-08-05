@@ -70,7 +70,7 @@ def input_students
 	#while the name is not empty, repeat this code
 	while !name.empty? do
 
-		students << {:name=>name,:cohort=> :august}
+		students << {:name=> name,:cohort=> :august}
 
 		print "Now we have #{students.length} students \n"
 
@@ -91,15 +91,16 @@ end
 
 def print_info(students)
 
-	students.each do |student|
+	students.each_with_index do |(key,value),index|
 
-		print "#{student[:name]} (#{student[:cohort]} cohort) \n"
+		puts "#{index} #{key[:name]} (#{key[:cohort]} cohort) "
 	end
 end
 
 def print_footer(students)
 
-	print "Overall we have #{students.length} students \n" 	
+	puts "==========================================="
+	puts "Overall we have #{students.length} students" 	
 
 end
 
