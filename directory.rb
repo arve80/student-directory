@@ -1,30 +1,38 @@
-puts	"The students of my cohort at Makers Academy"
-puts	"====================================="
-puts	"Albert Vallverdu"
-puts	"Ruth Earle"
-puts	"Andy Gates"
-puts	"Marc Singh"
-puts	"Faisal Aydarus"
-puts	"Ethel Ng"
-puts	"Kevin Daniels"
-puts	"Maya Driver"
-puts	"Leopold Kwok"
-puts	"James McNeil"
-puts	"Jerome Pratt"
-puts	"David Wickes"
-puts	"Javier Silverio"
-puts	"Elliot Lewis"
-puts	"Ben Tillett"
-puts	"Vincent Koch"
-puts	"Michelle Ballard"
-puts	"Nick Roberts"
-puts	"Tatiana Soukiassian"
-puts	"Mervé Silk"
-puts	"Lovis Schultze"
-puts	"Chris Oatley"
-puts	"Spike Lindsey"
-puts	"Henry Stanley"
+students = [
+				"Ruth Earle",
+				"Andy Gates",
+				"Marc Singh",
+				"Faisal Aydarus",
+				"Ethel Ng",
+				"Kevin Daniels",
+				"Maya Driver",
+				"Leopold Kwok",
+				"James McNeil",
+				"Jerome Pratt",
+				"David Wickes",
+				"Javier Silverio",
+				"Elliot Lewis",
+				"Ben Tillett",
+				"Vincent Koch",
+				"Michelle Ballard",
+				"Nick Roberts",
+				"Tatiana Soukiassian",
+				"Mervé Silk",
+				"Lovis Schultze",
+				"Chris Oatley",
+				"Spike Lindsey",
+				"Henry Stanley",
+				"Albert Vallverdu"
+				]
 
-print "Overall we have "
-print 24
-puts " students"
+# Beginning program 
+
+puts	"The students of my cohort at Makers Academy"
+puts	"==========================================="
+
+students.each do |item|
+
+	puts item
+end
+
+puts "Overall we have #{students.length} students"
