@@ -1,3 +1,4 @@
+=begin
 students = [
 				{ name: "Ruth Earle", cohort: :august},
 				{ name: "Andy Gates", cohort: :august},
@@ -53,7 +54,60 @@ print_info(students)
 
 print_footer(students)
 
+=end
 
+def input_students
+	
+	puts "Please enter the names of the students"
+	puts "To finish, just hit return twice"
+
+	#create and empty array
+	students = []
+
+	#get the first name
+	name = gets.chomp()
+
+	#while the name is not empty, repeat this code
+	while !name.empty? do
+
+		students << {:name=>name,:cohort=> :august}
+
+		puts "Now we have #{students.length} students"
+
+		#get another name from the user
+		name = gets.chomp()
+	end
+
+	#return students array
+	students
+
+end
+
+def print_header
+
+	puts	"The students of my cohort at Makers Academy"
+	puts	"==========================================="
+end
+
+def print_info(students)
+
+	students.each do |student|
+
+		puts "#{student[:name]} (#{student[:cohort]} cohort)"
+	end
+end
+
+def print_footer(students)
+
+	puts "Overall we have #{students.length} students"	
+
+end
+
+students = input_students
+
+print_header()
+print_info(students)
+print_footer(students)
 
 
 
