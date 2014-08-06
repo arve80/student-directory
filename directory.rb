@@ -47,7 +47,7 @@ end
 
 def input_students
 	
-	puts "Please enter the names of the students "
+	puts "Please enter the names of the students and cohort separated by \"comma\""
 	puts "To finish, just hit return twice "
 
 	#create and empty array
@@ -88,7 +88,7 @@ def print_student(students)
 
 	while start < count 
 
-		puts "#{$col_0}Name:#{$col_1} #{students[start][:name]}"
+		puts "#{$col_0}Name:#{$col_1} #{students[start][:name].center(25)}"
 		puts "#{$col_0}Cohort:#{$col_1} #{students[start][:cohort]}"
 		puts "#{$col_0}Country:#{$col_1} #{students[start][:country]}"
 		puts "==================================================="
