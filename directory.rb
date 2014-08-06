@@ -38,10 +38,7 @@ def set_user_details
 
 	cohort = 'August' if cohort.length === 0
 
-	puts "Which is your country of birth?"
-	country = gets.chomp
-
-	return temp_arr << cohort << country
+	return temp_arr << cohort 
 
 end
 
@@ -61,7 +58,7 @@ def input_students
 
 		get_user_details = set_user_details
 
-		students << {name: name,cohort: get_user_details[0], country: get_user_details[1]}
+		students << {name: name,cohort: get_user_details[0]}
 
 		puts "Now we have #{students.length} students "
 
@@ -90,7 +87,6 @@ def print_student(students)
 
 		puts "#{$col_0}Name:#{$col_1} #{students[start][:name].center(25)}"
 		puts "#{$col_0}Cohort:#{$col_1} #{students[start][:cohort]}"
-		puts "#{$col_0}Country:#{$col_1} #{students[start][:country]}"
 		puts "==================================================="
 
 		start +=1
