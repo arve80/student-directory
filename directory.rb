@@ -24,14 +24,31 @@ students = [
 				{ name: "Spike Lindsey", cohort: :august},
 				{ name: "Henry Stanley", cohort: :august},
 				{ name: "Albert Vallverdu", cohort: :august},
-				]
+			]
 
-$color = ["\e[0;31m","\e[0m"]
+$col_0 = "\e[0;31m" 
+$col_1 = "\e[0m"
+
+def set_user_details
+
+	temp_arr = []
+
+	puts "Which is your cohort?"
+	cohort = gets.chomp 
+
+	cohort = 'August' if cohort.length === 0
+
+	puts "Which is your country of birth?"
+	country = gets.chomp
+
+	return temp_arr << cohort << country
+
+end
 
 def input_students
 	
-	print "Please enter the names of the students \n"
-	print "To finish, just hit return twice \n"
+	puts "Please enter the names of the students "
+	puts "To finish, just hit return twice "
 
 	#create and empty array
 	students = []
@@ -42,11 +59,14 @@ def input_students
 	#while the name is not empty, repeat this code
 	while !name.empty? do
 
-		students << {:name=> name,:cohort=> :august}
+		get_user_details = set_user_details
 
-		print "Now we have #{students.length} students \n"
+		students << {name: name,cohort: get_user_details[0], country: get_user_details[1]}
+
+		puts "Now we have #{students.length} students "
 
 		#get another name from the user
+		puts "Enter another name"
 		name = gets.chomp
 	end
 
@@ -56,22 +76,39 @@ end
 
 def print_header
 
-	print	"The students of my cohort at Makers Academy \n"
-	print	"=========================================== \n"
+	puts	"The students of my cohort at Makers Academy"
+	puts	"==========================================="
 end
 
 def print_student(students)
 
-	students.each_with_index do |(key),index|
+	count = students.length
+
+	start = 0
+
+	while start < count 
+
+		puts "#{$col_0}Name:#{$col_1} #{students[start][:name]}"
+		puts "#{$col_0}Cohort:#{$col_1} #{students[start][:cohort]}"
+		puts "#{$col_0}Country:#{$col_1} #{students[start][:country]}"
+		puts "==================================================="
+
+		start +=1
+	end
+
+=begin	
+
+	students.each_with_index do |(key),index| # Add 'value' inside parenthesis if you wanna access it.
 
 		puts "#{$color[0]}#{index+1}#{$color[1]} #{key[:name]} (#{key[:cohort]} cohort) "
 	
 	end
+
+=end	
 end
 
 def print_footer(students)
 
-	puts "==========================================="
 	puts "Overall we have #{students.length} students" 	
 
 end
@@ -80,24 +117,24 @@ end
 def search_by_letter(students)
 
 	puts "Tell me the letter?"
-
 	letter = gets.chomp
 	letter_found = false
-
+	
 	students.each do |student|
 
-		each_letter = student[:name].slice(0)
+		if student[:name].downcase.start_with?(letter.downcase)
 
-		if each_letter.include?(letter.capitalize)
-			puts student[:name] 
-			letter_found = true
+			students = []
+
+			students << student
+
+			print_student(students)
+			
+			letter_found=true
 		end
-
-		#	puts "#{$color[0]}Sorry, There isn't a maker with the letter \"#{letter}\" #{$color[1]}"
-
 	end
 
-	puts "#{$color[0]}Sorry, There isn't a maker with the letter \"#{letter}\" #{$color[1]}" unless letter_found
+	puts "#{$color[0]}Sorry, There isn't a maker with the letter \"#{letter.capitalize}\" #{$color[1]}" unless letter_found
 end
 
 def search_by_count(students)
@@ -110,13 +147,11 @@ def search_by_count(students)
 
 		count_name = (student[:name].length)-1
 
-		# puts count_name
-
 		puts student[:name] if user_number.to_i >= count_name
 	end	
 end
 
-#students = input_students
+students = input_students
 
 print_header
 print_student(students)
@@ -127,7 +162,9 @@ puts "Type \"l\" for letter or \"c\" for count"
 
 arg_to_search = gets.chomp
 
-arg_to_search === 'l' ? search_by_letter(students) : search_by_count(students)
+arg_to_search == 'l' ? search_by_letter(students) : search_by_count(students)
+
+
 
 
 
