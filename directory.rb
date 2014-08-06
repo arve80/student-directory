@@ -27,37 +27,6 @@ students = [
 				]
 
 $color = ["\e[0;31m","\e[0m"]
-=begin
-
-def print_header
-
-	puts	"The students of my cohort at Makers Academy"
-	puts	"==========================================="
-end
-
-def print_student(students)
-
-	students.each do |student|
-
-		puts "#{student[:name]} (#{student[:cohort]} cohort)"
-	end
-end
-
-def print_footer(students)
-
-	puts "Overall we have #{students.length} students"	
-
-end
-
-# Beginning program 
-
-print_header
-
-print_info(students)
-
-print_footer(students)
-
-=end
 
 def input_students
 	
@@ -107,25 +76,44 @@ def print_footer(students)
 
 end
 
-def search_student(students)
+
+def search_by_letter(students)
 
 	puts "Tell me the letter?"
 
 	letter = gets.chomp
+	letter_found = false
 
 	students.each do |student|
 
 		each_letter = student[:name].slice(0)
 
-		if each_letter === letter
-
-			puts student[:name]
-
-		elsif each_letter != letter
-
-			puts "#{$color[0]}Sorry, There isn't a maker with the letter \"#{letter}\" #{$color[1]}";exit(0)
+		if each_letter.include?(letter.capitalize)
+			puts student[:name] 
+			letter_found = true
 		end
+
+		#	puts "#{$color[0]}Sorry, There isn't a maker with the letter \"#{letter}\" #{$color[1]}"
+
 	end
+
+	puts "#{$color[0]}Sorry, There isn't a maker with the letter \"#{letter}\" #{$color[1]}" unless letter_found
+end
+
+def search_by_count(students)
+
+	puts "Which number do you want to use as a range?"
+
+	user_number = gets.chomp
+
+	students.each do |student|
+
+		count_name = (student[:name].length)-1
+
+		# puts count_name
+
+		puts student[:name] if user_number.to_i >= count_name
+	end	
 end
 
 #students = input_students
@@ -134,11 +122,12 @@ print_header
 print_student(students)
 print_footer(students)
 
-puts "Do you want to search a maker by letter?"
+puts "Do you want to search a maker by letter or by counting the name?"
+puts "Type \"l\" for letter or \"c\" for count"
 
-gets.chomp
+arg_to_search = gets.chomp
 
-search_student(students)
+arg_to_search === 'l' ? search_by_letter(students) : search_by_count(students)
 
 
 
