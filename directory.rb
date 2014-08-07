@@ -153,7 +153,7 @@ def set_user_details
 
 	temp_arr = []
 
-	puts "Which is your cohort?"
+	puts "Which is your cohort or press enter for August?"
 	cohort = gets.chomp 
 
 	cohort = 'August' if cohort.length === 0
@@ -205,8 +205,8 @@ def print_student(students)
 
 	while start < count 
 
-		puts "#{$col_0}Name:#{$col_1} #{students[start][:name].center(25)}"
-		puts "#{$col_0}Cohort:#{$col_1} #{students[start][:cohort]}"
+		puts "#{$col_0}Name:#{$col_1} #{students[start][:name].center(10)}"
+		puts "#{$col_0}Cohort:#{$col_1} #{students[start][:cohort].center(3)}"
 		puts "==================================================="
 
 		start +=1
@@ -240,17 +240,17 @@ def search_by_letter(students)
 
 		if student[:name].downcase.start_with?(letter.downcase)
 
-			students = []
+			temp_students = []
 
-			students << student
+			temp_students << student
 
-			print_student(students)
+			print_student(temp_students)
 			
 			letter_found=true
 		end
 	end
 
-	puts "#{$color[0]}Sorry, There isn't a maker with the letter \"#{letter.capitalize}\" #{$color[1]}" unless letter_found
+	puts "#{$col_0}Sorry, There isn't a maker with the letter \"#{letter}\" #{$col_1}" unless letter_found
 end
 
 def search_by_count(students)
