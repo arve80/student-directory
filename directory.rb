@@ -31,7 +31,9 @@ def input_students
 		
 		add_student(name, :August)
 
-		puts "Now we have #{@students.length} students "
+		#puts "Now we have #{@students.length} students "
+
+		print_footer(@students)
 
 		#get another name from the user
 		puts "Enter another name"
@@ -78,7 +80,9 @@ end
 
 def print_footer(students)
 
-	puts "Overall we have #{students.length} students" 	
+	stu_length = students.length
+	
+	puts "Overall we have #{stu_length} student#{'s' if stu_length > 1}" 	
 
 end
 
