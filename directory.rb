@@ -7,6 +7,9 @@ def print_menu
 		puts "1. Input the students"
 		puts "2. Show the students"
 		puts "3. To save the file"
+		puts "4. To load all the students"
+		puts "5. To search a student by letter"
+		puts "6. To delete content file"
 		puts "9. Exit"
 end
 
@@ -26,10 +29,16 @@ def process(selection)
 			show_students
 		when '3'
 			save_students
+		when '4'
+			load_students
+		when '5'
+			search_by_letter
+		when '6'
+			delete_student_from_file	
 		when '9'
 			exit
 		else
-			puts "I don't know what you meant, try again"
+			puts "#{$col_0}I don't know what you meant, try again#{$col_1}"
 	end
 end
 
@@ -38,7 +47,7 @@ def interactive_menu
 	loop do
 		
 		print_menu
-		process(gets.chomp)
+		process(STDIN.gets.chomp)
 		
 	end
 end
@@ -55,7 +64,7 @@ def input_students
 	puts "To finish, just hit return twice "
 
 	#get the first name
-	name = gets.chomp
+	name = STDIN.gets.chomp
 
 		#while the name is not empty, repeat this code
 	while !name.empty? do
@@ -66,7 +75,7 @@ def input_students
 
 		#get another name from the user
 		puts "Enter another name"
-		name = gets.chomp
+		name = STDIN.gets.chomp
 
 	end
 
@@ -131,7 +140,57 @@ def save_students
 	file.close
 end
 
+def load_students(file_name='students.csv')
+		
+		file = File.open(file_name,'r')
+		file.readlines.each do |line|
+			name, cohort = line.chomp.split(',')
+			add_student(name,cohort)
+		end
+		file.close
+end
+
+def try_load_students
+	
+	file_name = ARGV.first
+	return if file_name.nil?
+
+	if File.exists?(file_name)
+		load_students(file_name)
+		puts "Loaded #{@students.length} from #{file_name}"
+
+	else
+		puts "#{$col_0}Sorry, #{file_name} doesn't exist.#{$col_1}"
+		exit
+	end
+end
+
+def delete_student_from_file(file_name='students.csv')
+			
+		file = File.open(file_name,'w')
+		file.puts ' '
+		file.close
+end
+
+def search_by_letter
+	puts "Which letter to search?"
+	letter = STDIN.gets.chomp
+	letter_found = false
+
+	@students.each do |student|
+
+		if student[:name].downcase.start_with?(letter.downcase)
+
+			print_students
+			letter_found = true
+		end
+	end
+		puts "#{$col_0}Sorry, There isn't a maker with the letter \"#{letter.capitalize}\" #{$col_1}" unless letter_found
+
+end
+
 
 # Calling the program
 
+try_load_students
 interactive_menu
