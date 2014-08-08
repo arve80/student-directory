@@ -11,5 +11,9 @@ How to use
 ruby directory.rb
 ```
 
+```javascript
+"hello world"
+```
+
 End of file
 -----------
