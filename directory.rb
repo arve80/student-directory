@@ -3,6 +3,9 @@
 $col_0 = "\e[0;31m" 
 $col_1 = "\e[0m"
 
+$ok_col_0 = "$\e[0;32m" 
+$ok_col_1 = "\e[0m"
+
 def print_menu
 		puts "1. Input the students"
 		puts "2. Show the students"
@@ -24,7 +27,6 @@ def process(selection)
 
 		when '1'
 			input_students
-
 		when '2'
 			show_students
 		when '3'
@@ -58,6 +60,7 @@ def add_student(name,cohort)
 
 end
 
+
 def input_students
 	
 	puts "Please enter the names of the students"
@@ -68,7 +71,7 @@ def input_students
 
 		#while the name is not empty, repeat this code
 	while !name.empty? do
-		
+
 		add_student(name, :August)
 
 		print_footer
@@ -98,8 +101,8 @@ def print_students
 
 	while count < stud_length 
 
-		puts "#{$col_0}Name:#{$col_1} #{@students[count][:name].center(12)}"
-		puts "#{$col_0}Cohort:#{$col_1} #{@students[count][:cohort].to_s.center(8)}"
+		puts "Name:  #{$ok_col_0}#{@students[count][:name].center(12)}#{$ok_col_1}"
+		puts "Cohort:#{$ok_col_0}#{@students[count][:cohort].to_s.center(8)}#{$ok_col_1}"
 		puts "==================================================="
 
 		count +=1
@@ -134,6 +137,9 @@ def save_students
 	@students.each do |student|
 		student_data = [student[:name],student[:cohort]]
 		csv_line = student_data.join(",")
+
+		puts "#{$ok_col_0}Saving #{[student_data][0][0]} on Students.csv #{$ok_col_1}"
+		
 		file.puts csv_line
 	end
 
@@ -148,6 +154,8 @@ def load_students(file_name='students.csv')
 			add_student(name,cohort)
 		end
 		file.close
+
+		puts "#{$ok_col_0}Students.csv Loaded#{$ok_col_1}"
 end
 
 def try_load_students
@@ -167,9 +175,14 @@ end
 
 def delete_student_from_file(file_name='students.csv')
 			
-		file = File.open(file_name,'w')
-		file.puts ' '
-		file.close
+	file = File.open(file_name,'w')
+	
+	@students.clear
+
+	file.close
+
+	puts "#{$ok_col_0}Students.csv file has been emptied#{$ok_col_1}"
+
 end
 
 def search_by_letter
@@ -181,12 +194,11 @@ def search_by_letter
 
 		if student[:name].downcase.start_with?(letter.downcase)
 
-			print_students
+			puts student[:name]
 			letter_found = true
 		end
 	end
 		puts "#{$col_0}Sorry, There isn't a maker with the letter \"#{letter.capitalize}\" #{$col_1}" unless letter_found
-
 end
 
 
