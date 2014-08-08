@@ -1,26 +1,18 @@
-
 @students = []
 
 $col_0 = "\e[0;31m" 
 $col_1 = "\e[0m"
 
-
-
-def add_student(name,cohort)
-		
-	@students << {name: name, cohort: cohort}
-
-end
-
 def print_menu
 		puts "1. Input the students"
 		puts "2. Show the students"
+		puts "3. To save the file"
 		puts "9. Exit"
 end
 
 def show_students
 	print_header
-	print_student
+	print_students
 	print_footer
 end
 
@@ -32,6 +24,8 @@ def process(selection)
 
 		when '2'
 			show_students
+		when '3'
+			save_students
 		when '9'
 			exit
 		else
@@ -49,7 +43,11 @@ def interactive_menu
 	end
 end
 
+def add_student(name,cohort)
+		
+	@students << {name: name, cohort: cohort}
 
+end
 
 def input_students
 	
@@ -83,7 +81,7 @@ def print_header
 	puts	"==========================================="
 end
 
-def print_student
+def print_students
 
 	stud_length = @students.length
 
@@ -115,6 +113,22 @@ def print_footer
 	
 	puts "Overall we have #{stu_length} student#{'s' if stu_length > 1}" 	
 
+end
+
+
+def save_students
+
+	#open the file for writing
+	file = File.open("students.csv","w")
+
+	#iterate over the array of students
+	@students.each do |student|
+		student_data = [student[:name],student[:cohort]]
+		csv_line = student_data.join(",")
+		file.puts csv_line
+	end
+
+	file.close
 end
 
 
