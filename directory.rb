@@ -3,7 +3,7 @@
 $col_0 = "\e[0;31m" 
 $col_1 = "\e[0m"
 
-$ok_col_0 = "$\e[0;32m" 
+$ok_col_0 = "\e[0;32m" 
 $ok_col_1 = "\e[0m"
 
 def print_menu
@@ -203,6 +203,8 @@ end
 
 
 # Calling the program
-
+puts @students.length
 try_load_students
+puts @students.length
 interactive_menu
+puts @students.length
