@@ -28,7 +28,7 @@ First contact with ruby and interaction with the Command Line Interface
 > # Additional functionality
 
 > delete_student_from_file
-> search_by_letter
+> search_by_letterg
 ```
 
 
