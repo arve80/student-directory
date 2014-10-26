@@ -19,11 +19,9 @@ First contact with ruby and interaction with the Command Line Interface
 > ruby directory.rb
 > # Calling the program
 > @students = []
-> puts @students.length
 > try_load_students
-> puts @students.length
 > interactive_menu
-> puts @students.length
+
 
 > # Additional functionality
 
